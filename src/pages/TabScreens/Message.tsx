@@ -136,12 +136,13 @@ export default function Message({
 
   getChats = () => {
     console.log('GetChats');
+    console.log(apiendpoints.getfriends, user.id);
     axios
       .post(apiendpoints.getfriends, {
         myid: user.id,
       })
       .then(res => {
-        console.log('GetChats Inside');
+        console.log(res.data.chats.length);
         setChats(res.data.chats);
         setSearchedChates(res.data.chats);
         joinallroom(res.data.chats);

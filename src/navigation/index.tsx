@@ -162,6 +162,8 @@ export default function index() {
               Token: res.data.Token,
             });
           } else {
+            console.log('LOGIN');
+            console.log(res.data.user);
             setUser(res.data.user);
             storage.set(MMKV_KEYS.USER, JSON.stringify(res.data.user));
             storage.set(MMKV_KEYS.TOKEN, res.data.token);
@@ -235,12 +237,16 @@ export default function index() {
   };
 
   useEffect(() => {
+    console.log(storage.getString(MMKV_KEYS.TOKEN));
     axios
       .post(apiendpoints.authenticate, {
         Token: storage.getString(MMKV_KEYS.TOKEN) || '',
       })
       .then(res => {
         if (res.data.succes) {
+          if (storage.getString(MMKV_KEYS.FCMTOKEN)) {
+            updateFcmToken();
+          }
         } else {
           // showToast('error', 'error', res.data.message);
           // handleLogout();
@@ -250,6 +256,13 @@ export default function index() {
         }
       });
   }, []);
+
+  const updateFcmToken = () => {
+    axios.post(apiendpoints.updatefcmtoken, {
+      myid: user?.id,
+      fcmtoken: storage.getString(MMKV_KEYS.FCMTOKEN),
+    });
+  };
 
   const renderTabIcon = (
     route: any,

@@ -1,12 +1,9 @@
-// export const apiurl = 'http://192.168.0.103:2004/';
-// export const apiurl = 'https://oyster-app-nnxja.ondigitalocean.app/';
-// export const apiurl = 'https://dev.api.chateo.kekenj-sabolc.me/';
-export const apiurl = 'https://dev.koki10.online/';
-// export const socketapiurl = 'https://oyster-app-nnxja.ondigitalocean.app/';
-export const socketapiurl = 'https://squid-app-ixfgr.ondigitalocean.app/';
+export const apiurl = 'http://213.181.206.157:5004/';
+export const socketapiurl = 'http://213.181.206.157:5004/';
 
 export const apiendpoints = {
   authenticate: apiurl + 'authenticate',
+  updatefcmtoken: apiurl + 'updatefcmtoken',
   profileimg: apiurl + 'UsersProfileImg/',
   image: apiurl + 'Images/',
   login: apiurl + 'login',
